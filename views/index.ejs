@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Post-it Notes</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Post-it Notes</h1>
+
+    <form action="/add-note" method="POST">
+        <textarea name="text" placeholder="Write your note here..." required></textarea>
+        <div class="color-options">
+            <input type="radio" name="color" value="#ffadad" checked>
+            <input type="radio" name="color" value="#ffd6a5">
+            <input type="radio" name="color" value="#fdffb6">
+            <input type="radio" name="color" value="#caffbf">
+            <input type="radio" name="color" value="#9bf6ff">
+        </div>
+        <button type="submit">Create Note</button>
+    </form>
+
+    <div class="notes-container">
+        <% notes.forEach((note, index) => { %>
+            <div class="note" style="background: <%= note.color %>;">
+                <p><%= note.text %></p>
+                <form action="/delete-note" method="POST">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <button type="submit">X</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+</body>
+</html>
