@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+
 body {
-  font-family: Arial, sans-serif;
+  background-image: url('/images/paper-background.jpg'); /* Correct path */
+  background-size: cover; /* Cover the entire page */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* No repeating */
+  background-attachment: fixed; /* Stay fixed when scrolling */
+  font-family: 'IM Fell English SC', serif;
+  font-size: 18px;
+  text-shadow: 1px 1px 1px rgba(150, 150, 150, 0.5);
   text-align: center;
-  background-color: #DBE2EF;
 }
 textarea {
   width: 300px;
@@ -49,7 +57,7 @@ textarea {
 button {
   padding: 10px 15px;
   border: none;
-  color: brown;
+  color: #1A1919;
   font-weight: bold;
   cursor: pointer;
   border-radius: 5px;

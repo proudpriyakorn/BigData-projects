@@ -24,3 +24,4 @@ app.use((req, res, next) => {
     res.locals.messages = req.flash(); // Pass messages to all views
     next();
 });
+
