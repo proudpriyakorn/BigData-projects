@@ -5,8 +5,6 @@
     <title>Post-it Notes</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
-
-
 </head>
 <body>
     <h1>Post-it Notes</h1>
@@ -20,44 +18,25 @@
     <form action="/add-note" method="POST">
         <textarea name="text" placeholder="Write your note here..." required></textarea>
         
-        <div class="color-options">
-            <label style="background: #ffadad;">
-                <input type="radio" name="color" value="#ffadad" checked>
-                <span></span>
-            </label>
-            <label style="background: #ffd6a5;">
-                <input type="radio" name="color" value="#ffd6a5">
-                <span></span>
-            </label>
-            <label style="background: #fdffb6;">
-                <input type="radio" name="color" value="#fdffb6">
-                <span></span>
-            </label>
-            <label style="background: #caffbf;">
-                <input type="radio" name="color" value="#caffbf">
-                <span></span>
-            </label>
-            <label style="background: #9bf6ff;">
-                <input type="radio" name="color" value="#9bf6ff">
-                <span></span>
-            </label>
+        <!-- Color Options Frame -->
+        <div class="color-options-container">
+            <div class="color-options">
+                <% const colors = ["#ffadad", "#ffd6a5", "#fdffb6", "#caffbf", "#9bf6ff", "#a0c4ff", "#bdb2ff", "#ffc6ff", "#d0f4de"]; %>
+                <% colors.forEach((color, index) => { %>
+                    <label style="background: <%= color %>;">
+                        <input type="radio" name="color" value="<%= color %>" <%= index === 0 ? "checked" : "" %>>
+                        <span></span>
+                    </label>
+                <% }) %>
+            </div>
         </div>
-        
 
-        <button type="submit" id="create-btn">Create Note</button>
+        <button type="submit" class="create-note">Create Note</button>
     </form>
 
     <!-- Display Notes -->
     <div class="notes-container">
-        <% notes.forEach((note) => { %>
-            <div class="note" style="background: <%= note.color %>;">
-                <p><%= note.text %></p>
-                <form action="/delete-note" method="POST">
-                    <input type="hidden" name="id" value="<%= note._id %>">
-                    <button type="submit">X</button>
-                </form>
-            </div>
-        <% }) %>
+        <!-- Notes will be displayed here by client-side JavaScript -->
     </div>
 
     <script src="/script.js"></script>
