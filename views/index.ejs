@@ -8,28 +8,55 @@
 <body>
     <h1>Post-it Notes</h1>
 
+    <!-- Flash Messages -->
+    <% if (typeof messages !== 'undefined' && messages.success) { %>
+        <p class="message success"><%= messages.success %></p>
+    <% } %>
+    
+    <!-- Note Form -->
     <form action="/add-note" method="POST">
         <textarea name="text" placeholder="Write your note here..." required></textarea>
+        
         <div class="color-options">
-            <input type="radio" name="color" value="#ffadad" checked>
-            <input type="radio" name="color" value="#ffd6a5">
-            <input type="radio" name="color" value="#fdffb6">
-            <input type="radio" name="color" value="#caffbf">
-            <input type="radio" name="color" value="#9bf6ff">
+            <label style="background: #ffadad;">
+                <input type="radio" name="color" value="#ffadad" checked>
+                <span></span>
+            </label>
+            <label style="background: #ffd6a5;">
+                <input type="radio" name="color" value="#ffd6a5">
+                <span></span>
+            </label>
+            <label style="background: #fdffb6;">
+                <input type="radio" name="color" value="#fdffb6">
+                <span></span>
+            </label>
+            <label style="background: #caffbf;">
+                <input type="radio" name="color" value="#caffbf">
+                <span></span>
+            </label>
+            <label style="background: #9bf6ff;">
+                <input type="radio" name="color" value="#9bf6ff">
+                <span></span>
+            </label>
         </div>
-        <button type="submit">Create Note</button>
+        
+
+        <button type="submit" id="create-btn">Create Note</button>
     </form>
 
+    <!-- Display Notes -->
     <div class="notes-container">
-        <% notes.forEach((note, index) => { %>
+        <% notes.forEach((note) => { %>
             <div class="note" style="background: <%= note.color %>;">
                 <p><%= note.text %></p>
                 <form action="/delete-note" method="POST">
-                    <input type="hidden" name="index" value="<%= index %>">
+                    <input type="hidden" name="id" value="<%= note._id %>">
                     <button type="submit">X</button>
                 </form>
             </div>
         <% }) %>
     </div>
+
+    <script src="/script.js"></script>
 </body>
 </html>
